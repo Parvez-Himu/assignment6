@@ -132,4 +132,23 @@ const adoptPet = (Petad, adoptBtn) => {
     fetchPetDetails(Petad);
 }
 
+// Open modal for pet details
+async function openModal(petId) {
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`);
+    const data = await res.json();
+    const petData = data.petData;
+
+    document.getElementById("modal-pet-name").innerText = petData.pet_name;
+    document.getElementById("modal-breed").innerText = `Breed: ${petData.breed}`;
+    document.getElementById("modal-birth").innerText = `Birth: ${petData.date_of_birth}`;
+    document.getElementById("modal-gender").innerText = `Gender: ${petData.gender}`;
+    document.getElementById("modal-price").innerText = `Price: ${petData.price}$`;
+    document.getElementById("modal-image").src = petData.image;
+
+    document.getElementById('my_modal_4').showModal();
+}
+
+function closeModal() {
+    document.getElementById('my_modal_4').close();
+}
 
