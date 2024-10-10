@@ -106,3 +106,30 @@ const displayLoadImages = (items) => {
     });
 }
 
+// Adopt pet modal countdown
+const adoptPet = (Petad, adoptBtn) => {
+    const modal = document.getElementById('modal');
+    const countdownElement = document.getElementById('countdown');
+    let count = 3;
+    modal.classList.remove('hidden');
+    countdownElement.textContent = count;
+
+    const interval = setInterval(() => {
+        count--;
+        countdownElement.textContent = count;
+        if (count === 0) {
+            clearInterval(interval);
+            adoptBtn.disabled = true;
+            adoptBtn.classList = "bg-gray-400 text-white font-bold px-4 py-2 border rounded";
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('my_modal_2').close();
+            }, 1000);
+        }
+    }, 1000);
+
+    document.getElementById('my_modal_2').showModal();
+    fetchPetDetails(Petad);
+}
+
+
