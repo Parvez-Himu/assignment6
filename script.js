@@ -152,3 +152,15 @@ function closeModal() {
     document.getElementById('my_modal_4').close();
 }
 
+// Add to cart
+const AddToCart = (info) => {
+    const bestDealContainer = document.getElementById('bestDealCart');
+    const cartCard = document.createElement('div');
+    cartCard.classList = "h-[100px]";
+    cartCard.innerHTML = `
+        <img class="rounded-2xl p-2 h-[100px] border" src=${info} alt="">
+    `;
+    bestDealContainer.appendChild(cartCard);
+}
+
+
