@@ -163,4 +163,24 @@ const AddToCart = (info) => {
     bestDealContainer.appendChild(cartCard);
 }
 
+// Sort by price
+const sortByPrice = (items) => {
+    return items.sort((a, b) => b.price - a.price);
+};
 
+document.getElementById('sortPriceBtn').addEventListener('click', async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
+    const data = await res.json();
+    const sortedItems = sortByPrice(data.pets);
+    displayLoadImages(sortedItems);
+});
+
+loadImages();
+
+// Scroll to best deal section
+const scrollToBestDealSection = () => {
+    const bestDealSection = document.getElementById('bestDealCart');
+    if (bestDealSection) {
+        bestDealSection.scrollIntoView({ behavior: 'smooth' });
+    }
+};
